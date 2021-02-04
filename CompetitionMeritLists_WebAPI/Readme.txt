@@ -1,0 +1,3 @@
+﻿Add-migration Student_obj -context CompetitionMeritLists_WebAPIContext
+
+update-database Student_obj -context CompetitionMeritLists_WebAPIContext
