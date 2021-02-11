@@ -8,13 +8,15 @@
     <title>Merit Result</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body style="        background-color: #DCFBFB;">
+<body style="background-color: #DCFBFB;">
     <div>
         <!-- Navigation bar code -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
-            <a class="navbar-brand" href="#">Merit Results</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-waring " style="background-color: #2E86C1">
+            <!-- A new page index1.cshtml tried to link with the Merit Result butn but didn't worked out-->
+            <a class="navbar-brand col text-right" href="~/Pages/Index1.cshtml">Merit Results</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" style="background-color: #1B4F72
+" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon col text-right"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
@@ -25,17 +27,17 @@
             </div>
         </nav>
 
-        <!-- following division is creating main area of the web page where all books data will display -->
+        <!-- following division is creating main area of the web page where all Student data will display -->
         <div class="container">
             <div class="row" id="allStudents">
             </div>
         </div>
     </div>
 
-    <!-- below mentioned code will create the template to add a new book -->
-    <div class="modal" tabindex="-1" role="dialog" id="addStudents">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    <!-- below mentioned code will create the template to add a new Student -->
+    <div class="modal" style="background-color:antiquewhite" tabindex="-1" role="dialog" id="addStudents">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content" style="background-color:aqua">
                 <div class="modal-header">
                     <h5 class="modal-title">Add Students</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -89,7 +91,7 @@
     </div>
 
     <!-- below mentioned code will create the template to Update a Student data -->
-    <div class="modal" tabindex="-1" role="dialog" id="UpdateStudents">
+    <div class="modal" style=" background-color:lightyellow" tabindex="-1" role="dialog" id="UpdateStudents">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -160,14 +162,14 @@
     <script>
         var uri = 'api/Students';
 
-        //Java script main function so JS start from here
+        //Java script main function 
         $(document).ready(function () {
             $.getJSON(uri)
                 .done(function (data) {
                     $("#MeritResultTemplate").tmpl(data).appendTo("#allStudents");
                 });
         });
-        // function to get all Students data and show on web page
+        // to get all Students data and show on web page
         function getAlltheStudents() {
             $.getJSON(uri)
                 .done(function (data) {
@@ -177,7 +179,7 @@
         }
 
 
-        // function to add data for new book
+        // to add new student data
         function addStudents() {
             var _student_Name = $('#student_Name').val();
             var _student_Age = parseInt($('#student_Age').val());
@@ -273,9 +275,9 @@
 
     <!-- below mentioned code will create the template on the web page to display all MeritResult -->
     <script id="MeritResultTemplate" type="text/x-jquery-tmpl">
-        <div class="col-lg-3" style="margin:10px;">
-            <div class="card card text-white bg-dark border-warning mb-3" style="width: 18rem; padding:20px">
-                <div class="card-body">
+        <div class="col-lg-4" style="margin:60px; ">
+            <div class="card card text-white" style="width: 30rem; background-color:#AED6F1; padding:30px">
+                <div class="card-body" style=" background-color:#5DADE2 ">
                     <h5 class="card-title">Student Name: ${student_Name}</h5>
                     <p class="card-text">Student Age :  ${student_age}</p>
                     <p class="card-text">School Name : ${school_Name}</p>
@@ -283,7 +285,7 @@
                     <p class="card-text">Subject Code : ${subject_Code}</p>
                     <p class="card-text">Marks Obtained: ${marks_Obtained}</p>
                 </div>
-                <span>
+                <span class="col text-center" >
                     <button class="btn btn-primary" onclick="getStudentForUpdate('${id}')" data-toggle="modal" data-target="#UpdateStudents">Update</button>
                     <a href="#" class="btn btn-danger" onclick="remove('${id}')">Delete</a>
                 </span>
