@@ -57,6 +57,8 @@ namespace CompetitionMeritLists_WebAPI
                 endpoints.MapControllers();
             });
 
+            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

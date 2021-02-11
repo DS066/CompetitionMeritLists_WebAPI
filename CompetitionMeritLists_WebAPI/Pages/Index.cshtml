@@ -2,3 +2,295 @@
 @model CompetitionMeritLists_WebAPI.Pages.IndexModel
 @{
 }
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Merit Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="        background-color: #DCFBFB;">
+    <div>
+        <!-- Navigation bar code -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <a class="navbar-brand" href="#">Merit Results</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <button class="btn btn-outline-dark" data-toggle="modal" data-target="#addStudents">Add New Student</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- following division is creating main area of the web page where all books data will display -->
+        <div class="container">
+            <div class="row" id="allStudents">
+            </div>
+        </div>
+    </div>
+
+    <!-- below mentioned code will create the template to add a new book -->
+    <div class="modal" tabindex="-1" role="dialog" id="addStudents">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Students</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="student_Name">Student Name</label>
+                            <input type="text" class="form-control" id="student_Name" aria-describedby="student_NameHelp" placeholder="Student Name">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="student_Age">Student Age</label>
+                            <input type="number" class="form-control" id="student_Age" aria-describedby="student_AgeHelp" placeholder="Student Age">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="school_Name">School Name</label>
+                            <input type="text" class="form-control" id="school_Name" aria-describedby="school_NameHelp" placeholder="School Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject_Name">Subject Name</label>
+                            <input type="text" class="form-control" id="subject_Name" aria-describedby="subject_NameHelp" placeholder="Subject Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject_Code">Subject Code</label>
+                            <input type="number" class="form-control" id="subject_Code" aria-describedby="subject_CodeHelp" placeholder="Subject Code">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="marks_Obtained">Marks Obtained</label>
+                            <input type="number" class="form-control" id="marks_Obtained" aria-describedby="marks_ObtainedHelp" placeholder="Marks Obtained">
+                        </div>
+
+                        <div class="form-group" id="result">
+
+
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addStudents()">Add Students</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- below mentioned code will create the template to Update a Student data -->
+    <div class="modal" tabindex="-1" role="dialog" id="UpdateStudents">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Students</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+
+                            <input type="hidden" class="form-control" id="Update_id" aria-describedby="IdHelp">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="student_Name">Student Name</label>
+                            <input type="text" class="form-control" id="Update_student_Name" aria-describedby="student_NameHelp">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="student_Age">Student Age</label>
+                            <input type="number" class="form-control" id="Update_student_age" aria-describedby="student_AgeHelp">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="school_Name">School Name</label>
+                            <input type="text" class="form-control" id="Update_school_Name" aria-describedby="school_NameHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject_Name">Subject Name</label>
+                            <input type="text" class="form-control" id="Update_subject_Name" aria-describedby="subject_NameHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject_Code">Subject Code</label>
+                            <input type="number" class="form-control" id="Update_subject_Code" aria-describedby="subject_CodeHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="marks_Obtained">Marks Obtained</label>
+                            <input type="number" class="form-control" id="Update_marks_Obtained" aria-describedby="marks_ObtainedHelp">
+                        </div>
+
+                        <div class="form-group" id="update_result">
+
+
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick=" updateStudent() ">Update</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <! -- java script files that will help to link the front end and back end -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        var uri = 'api/Students';
+
+        //Java script main function so JS start from here
+        $(document).ready(function () {
+            $.getJSON(uri)
+                .done(function (data) {
+                    $("#MeritResultTemplate").tmpl(data).appendTo("#allStudents");
+                });
+        });
+        // function to get all Students data and show on web page
+        function getAlltheStudents() {
+            $.getJSON(uri)
+                .done(function (data) {
+                    $("#allStudents").text("");
+                    $("#MeritResultTemplate").tmpl(data).appendTo("#allStudents");
+                });
+        }
+
+
+        // function to add data for new book
+        function addStudents() {
+            var _student_Name = $('#student_Name').val();
+            var _student_Age = parseInt($('#student_Age').val());
+            var _school_Name = $('#school_Name').val();
+            var _subject_Name = $('#subject_Name').val();
+            var _subject_Code = $('#subject_Code').val();
+            var _marks_Obtained = $('#marks_Obtained').val();
+            var Students = {
+                student_Name: _student_Name,
+                student_Age: _student_Age,
+                school_Name: _school_Name,
+                subject_Name: _subject_Name,
+                subject_Code: _subject_Code,
+                marks_Obtained: _marks_Obtained
+            };
+            $.ajax({
+                type: "POST",
+                url: uri,
+                data: JSON.stringify(Students),
+                contentType: "application/json; charset=utf-8"
+            }).done(function (response) {
+                $("#result").html("New Student Data is added Successfully");
+                getAlltheStudents();
+            }).fail(function (jqXHR, textStatus) {
+                $("#result").html("An error occured when Adding the Student record.");
+            });
+        }
+
+        //funtion to delete a particular Student based on id
+        function remove(id) {
+            var yes = confirm("Are you sure you want to delete this Students?");
+            if (yes) {
+                $.ajax({
+                    type: "DELETE",
+                    url: uri + "/" + id,
+                }).done(function (response) {
+                    $("#result").html("New Student Data is deleted Successfully");
+                    getAlltheStudents();
+                }).fail(function (jqXHR, textStatus) {
+                    $("#result").html("An error occured when deleting the Student record.");
+                });
+            }
+        }
+
+        // funtion to fill the data into update template
+        function getStudentForUpdate(id) {
+            $.ajax({
+                type: "GET",
+                url: uri + "/" + id,
+                contentType: "application/json"
+            }).done(function (response) {
+                $('#Update_id').val(response.id);
+                $('#Update_student_Name').val(response.student_Name);
+                $('#Update_student_age').val(response.student_age);
+                $('#Update_school_Name').val(response.school_Name);
+                $('#Update_subject_Name').val(response.subject_Name);
+                $('#Update_subject_Code').val(response.subject_Code);
+                $('#Update_marks_Obtained').val(response.marks_Obtained);
+            });
+        }
+        // function to update data of the Student
+        function updateStudent() {
+            var _student_Name = $('#Update_student_Name').val();
+            var _student_Age = parseInt($('#Update_student_age').val());
+            var _school_Name = $('#Update_school_Name').val();
+            var _subject_Name = $('#Update_subject_Name').val();
+            var _subject_Code = $('#Update_subject_Code').val();
+            var _marks_Obtained = $('#Update_marks_Obtained').val();
+            var Studentupdate = {
+                id: ($('#Update_id').val()),
+                student_Name: _student_Name,
+                student_Age: _student_Age,
+                school_Name: _school_Name,
+                subject_Name: _subject_Name,
+                subject_Code: _subject_Code,
+                marks_Obtained: _marks_Obtained
+            };
+            $.ajax({
+                type: "PUT",
+                url: uri + "/" + $('#Update_id').val(),
+                data: JSON.stringify(Studentupdate),
+                contentType: "application/json; charset=utf-8"
+            }).done(function (response) {
+                $("#update_result").html("Data is Updated Successfully");
+                getAlltheStudents();
+            }).fail(function (jqXHR, textStatus) {
+                $("#update_result").html("An error occured when updating the student record.");
+            });
+        }
+
+
+    </script>
+
+    <!-- below mentioned code will create the template on the web page to display all MeritResult -->
+    <script id="MeritResultTemplate" type="text/x-jquery-tmpl">
+        <div class="col-lg-3" style="margin:10px;">
+            <div class="card card text-white bg-dark border-warning mb-3" style="width: 18rem; padding:20px">
+                <div class="card-body">
+                    <h5 class="card-title">Student Name: ${student_Name}</h5>
+                    <p class="card-text">Student Age :  ${student_age}</p>
+                    <p class="card-text">School Name : ${school_Name}</p>
+                    <p class="card-text">Subject Name : ${subject_Name}</p>
+                    <p class="card-text">Subject Code : ${subject_Code}</p>
+                    <p class="card-text">Marks Obtained: ${marks_Obtained}</p>
+                </div>
+                <span>
+                    <button class="btn btn-primary" onclick="getStudentForUpdate('${id}')" data-toggle="modal" data-target="#UpdateStudents">Update</button>
+                    <a href="#" class="btn btn-danger" onclick="remove('${id}')">Delete</a>
+                </span>
+            </div>
+        </div>
+    </script>
+
+
+</body>
+</html >

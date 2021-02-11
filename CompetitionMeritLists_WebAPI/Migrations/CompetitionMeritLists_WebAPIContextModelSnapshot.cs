@@ -25,7 +25,7 @@ namespace CompetitionMeritLists_WebAPI.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Marks_Obtained")
+                    b.Property<int>("Marks_Obtained")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -39,7 +39,7 @@ namespace CompetitionMeritLists_WebAPI.Migrations
                     b.Property<int>("Student_age")
                         .HasColumnType("int");
 
-                    b.Property<string>("Subject_Code")
+                    b.Property<int>("Subject_Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
